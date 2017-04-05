@@ -20,7 +20,7 @@ import com.ag.lfm.LfmParameters;
 import com.ag.lfm.LfmRequest;
 
 @SuppressWarnings("unused")
-public class LfmApiCharts extends ApiBase {
+public class LfmApiChart extends ApiBase {
 
 
     /**

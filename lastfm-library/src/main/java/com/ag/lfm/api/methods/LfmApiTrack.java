@@ -30,30 +30,30 @@ public class LfmApiTrack extends ApiBase {
     /**
      * http://www.last.fm/api/show/track.updateNowPlaying
      */
-    public LfmRequest updateNowPlaying(LfmParameters params){
-        params.put("api_sig", LfmUtil.generateSignature(String.format(Locale.US,"%s.%s",getMethodsGroup(),"updateNowPlaying"),params));
-        return prepareRequest("updateNowPlaying",params,true);
+    public LfmRequest updateNowPlaying(LfmParameters params) {
+        params.put("api_sig", LfmUtil.generateSignature(String.format(Locale.US, "%s.%s", getMethodsGroup(), "updateNowPlaying"), params));
+        return prepareRequest("updateNowPlaying", params, true);
     }
 
     /**
      * http://www.last.fm/api/show/track.unlove
      */
-    public LfmRequest unlove(LfmParameters params){
-        params.put("api_sig", LfmUtil.generateSignature(String.format(Locale.US,"%s.%s",getMethodsGroup(),"unlove"),params));
-        return prepareRequest("unlove",params,true);
+    public LfmRequest unlove(LfmParameters params) {
+        params.put("api_sig", LfmUtil.generateSignature(String.format(Locale.US, "%s.%s", getMethodsGroup(), "unlove"), params));
+        return prepareRequest("unlove", params, true);
     }
 
     /**
      * http://www.last.fm/api/show/track.search
      */
-    public LfmRequest search(LfmParameters params){
-        return prepareRequest("search",params,false);
+    public LfmRequest search(LfmParameters params) {
+        return prepareRequest("search", params, false);
     }
 
     /**
      * http://www.last.fm/api/show/track.scrobble
      */
-    public LfmRequest scrobble(ScrobbleParameters params){
+    public LfmRequest scrobble(ScrobbleParameters params) {
         return prepareRequest(params);
     }
 
@@ -61,59 +61,59 @@ public class LfmApiTrack extends ApiBase {
      * http://www.last.fm/api/show/track.removeTag
      */
     public LfmRequest removeTag(LfmParameters params) {
-        params.put("api_sig", LfmUtil.generateSignature(String.format(Locale.US,"%s.%s",getMethodsGroup(),"removeTag"),params));
-        return prepareRequest("removeTag", params,true);
+        params.put("api_sig", LfmUtil.generateSignature(String.format(Locale.US, "%s.%s", getMethodsGroup(), "removeTag"), params));
+        return prepareRequest("removeTag", params, true);
     }
 
     /**
      * http://www.last.fm/api/show/track.love
      */
     public LfmRequest love(LfmParameters params) {
-        params.put("api_sig", LfmUtil.generateSignature(String.format(Locale.US,"%s.%s",getMethodsGroup(),"love"),params));
-        return prepareRequest("love", params,true);
+        params.put("api_sig", LfmUtil.generateSignature(String.format(Locale.US, "%s.%s", getMethodsGroup(), "love"), params));
+        return prepareRequest("love", params, true);
     }
 
     /**
      * http://www.last.fm/api/show/track.getTopTags
      */
     public LfmRequest getTopTags(LfmParameters params) {
-        return prepareRequest("getTopTags", params,false);
+        return prepareRequest("getTopTags", params, false);
     }
 
     /**
      * http://www.last.fm/api/show/track.getTags
      */
     public LfmRequest getTags(LfmParameters params) {
-        return prepareRequest("getTags", params,false);
+        return prepareRequest("getTags", params, false);
     }
 
     /**
      * http://www.last.fm/api/show/track.addTags
      */
     public LfmRequest addTags(LfmParameters params) {
-        params.put("api_sig", LfmUtil.generateSignature(String.format(Locale.US,"%s.%s",getMethodsGroup(),"addTags"),params));
-        return prepareRequest("addTags", params,true);
+        params.put("api_sig", LfmUtil.generateSignature(String.format(Locale.US, "%s.%s", getMethodsGroup(), "addTags"), params));
+        return prepareRequest("addTags", params, true);
     }
 
     /**
      * http://www.last.fm/api/show/track.getSimilar
      */
     public LfmRequest getSimilar(LfmParameters params) {
-        return prepareRequest("getSimilar", params,false);
+        return prepareRequest("getSimilar", params, false);
     }
 
     /**
      * http://www.last.fm/api/show/track.getCorrection
      */
     public LfmRequest getCorrection(LfmParameters params) {
-        return prepareRequest("getCorrection", params,true);
+        return prepareRequest("getCorrection", params, false);
     }
 
     /**
      * http://www.last.fm/api/show/track.getInfo
      */
     public LfmRequest getInfo(LfmParameters params) {
-        return prepareRequest("getInfo", params,false);
+        return prepareRequest("getInfo", params, false);
     }
 
     @Override

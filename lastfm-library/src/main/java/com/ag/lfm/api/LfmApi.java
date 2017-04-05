@@ -1,7 +1,9 @@
 package com.ag.lfm.api;
 
+import com.ag.lfm.LfmParameters;
 import com.ag.lfm.api.methods.LfmApiAlbum;
-import com.ag.lfm.api.methods.LfmApiCharts;
+import com.ag.lfm.api.methods.LfmApiArtist;
+import com.ag.lfm.api.methods.LfmApiChart;
 import com.ag.lfm.api.methods.LfmApiGeo;
 import com.ag.lfm.api.methods.LfmApiLibrary;
 import com.ag.lfm.api.methods.LfmApiTag;
@@ -23,8 +25,8 @@ public class LfmApi {
     /**
      * Returns object for preparing requests to chart part of API
      */
-    public static LfmApiCharts charts() {
-        return new LfmApiCharts();
+    public static LfmApiChart charts() {
+        return new LfmApiChart();
     }
 
     /**
@@ -60,5 +62,13 @@ public class LfmApi {
      */
     public static LfmApiAlbum album() {
         return new LfmApiAlbum();
+    }
+
+    /**
+     * Returns object for preparing requests to the artist part of the API
+     * @return artist api object
+     */
+    public static LfmApiArtist artist() {
+        return new LfmApiArtist();
     }
 }

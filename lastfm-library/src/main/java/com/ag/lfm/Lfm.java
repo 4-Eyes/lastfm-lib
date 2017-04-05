@@ -21,6 +21,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.ag.lfm.api.httpClient.AuthOperation;
+import com.ag.lfm.util.LfmUtil;
 
 /**
  * Class for initialization
@@ -171,7 +172,7 @@ public class Lfm {
                 .append(password).append("username")
                 .append(username)
                 .append(secret);
-        return com.ag.lfm.util.LfmUtil.md5Custom(builder.toString());
+        return LfmUtil.md5Custom(builder.toString());
     }
 
     public static void saveSession() {
