@@ -18,6 +18,7 @@ package com.ag.lfm;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 
 import com.ag.lfm.api.httpClient.AuthOperation;
@@ -114,19 +115,17 @@ public class Lfm {
 
     /**
      * Starts authorization process.
-     *
-     * @param username Username.
+     *  @param username Username.
      * @param password User password.
      * @param callback Authorization callback.
      */
 
-    public static void login(String username, String password, LfmCallback<Session> callback) {
+    public static AsyncTask<LfmCallback<Session>, Void, Void> login(String username, String password, LfmCallback<Session> callback) {
         LfmParameters params = new LfmParameters();
         params.put("username", username);
         params.put("password", password);
         params.put("api_sig", genMethodSignature(username, password));
-        new AuthOperation(params).execute(callback);
-
+        return new AuthOperation(params).execute(callback);
     }
 
     /**

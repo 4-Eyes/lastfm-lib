@@ -52,8 +52,9 @@ public class LfmError {
     public LfmError(JSONObject json) throws JSONException {
         this.errorCode = json.optInt("error");
         if (json.optString("message").contains("-")) {
-            this.errorReason = json.optString("message").substring(0, json.optString("message").lastIndexOf("-") - 1);
-            this.errorMessage = json.optString("message").substring(json.optString("message").lastIndexOf("-") + 1);
+            String[] split = json.optString("message").split(" - ");
+            this.errorReason = split[0];
+            this.errorMessage = split[1];
         } else {
             this.errorMessage = json.optString("message");
         }

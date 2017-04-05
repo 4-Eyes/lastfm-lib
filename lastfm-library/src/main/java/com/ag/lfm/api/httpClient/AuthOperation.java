@@ -122,7 +122,9 @@ public class AuthOperation extends AsyncTask<Lfm.LfmCallback<Session>, Void, Voi
             wr.writeBytes(userCredentials(params));
             wr.flush();
             wr.close();
-            if (connection.getResponseCode() == 200) {
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == 200) {
                 InputStream in = connection.getInputStream();
                 reader = new BufferedReader(new InputStreamReader(in));
                 buffer = new StringBuffer();
@@ -133,12 +135,23 @@ public class AuthOperation extends AsyncTask<Lfm.LfmCallback<Session>, Void, Voi
                 }
                 try {
                     response = new JSONObject(buffer.toString());
-                    if (!response.optString("error").isEmpty()) {
-                        error = new LfmError(response);
-                        sessionKey = null;
-                    } else {
-                        sessionKey = new Session(response);
-                    }
+                    sessionKey = new Session(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else if (responseCode == 400 || responseCode == 403) {
+                sessionKey = null;
+                InputStream err = connection.getErrorStream();
+                reader = new BufferedReader(new InputStreamReader(err));
+                buffer = new StringBuffer();
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line);
+                }
+                try {
+                    response = new JSONObject(buffer.toString());
+                    error = new LfmError(response);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
