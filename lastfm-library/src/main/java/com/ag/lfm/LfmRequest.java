@@ -15,6 +15,7 @@
 
 package com.ag.lfm;
 
+import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 
 import com.ag.lfm.api.httpClient.JSONOperation;
@@ -77,16 +78,16 @@ public class LfmRequest {
      *
      * @param listener listener for request events
      */
-    public void executeWithListener(LfmRequestListener listener) {
+    public AsyncTask<LfmRequestListener, Void, Void> executeWithListener(LfmRequestListener listener) {
         this.requestListener = listener;
-        start();
+        return start();
     }
 
-    private void start() {
+    private AsyncTask<LfmRequestListener, Void, Void> start() {
         if (scrobbleParameters == null)
-            new JSONOperation(methodName, parameters, needAuth).execute(requestListener);
+            return new JSONOperation(methodName, parameters, needAuth).execute(requestListener);
         else
-            new JSONOperation(scrobbleParameters).execute(requestListener);
+            return new JSONOperation(scrobbleParameters).execute(requestListener);
     }
 
     public static abstract class LfmRequestListener {

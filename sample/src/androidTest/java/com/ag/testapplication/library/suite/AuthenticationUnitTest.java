@@ -44,6 +44,9 @@ public class AuthenticationUnitTest {
         }
     }
 
+    /**
+     * Tests a logging where the password is left blank
+     */
     @Test
     public void loginTestFail() {
         try {
@@ -70,6 +73,9 @@ public class AuthenticationUnitTest {
         }
     }
 
+    /**
+     * Tests a login where the password provided is wrong
+     */
     @Test
     public void loginTestFail2() {
         try {
@@ -96,6 +102,9 @@ public class AuthenticationUnitTest {
         }
     }
 
+    /**
+     * Tests successful login
+     */
     @Test
     public void loginTestSucceed() {
         try {
