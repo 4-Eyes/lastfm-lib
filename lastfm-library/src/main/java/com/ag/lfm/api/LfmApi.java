@@ -1,6 +1,5 @@
 package com.ag.lfm.api;
 
-import com.ag.lfm.LfmParameters;
 import com.ag.lfm.api.methods.LfmApiAlbum;
 import com.ag.lfm.api.methods.LfmApiArtist;
 import com.ag.lfm.api.methods.LfmApiChart;

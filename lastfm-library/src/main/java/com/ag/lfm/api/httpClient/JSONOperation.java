@@ -35,7 +35,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Scanner;
 
 /**
  * Sending request using AsyncTask.
@@ -112,6 +111,8 @@ public class JSONOperation extends AsyncTask<LfmRequest.LfmRequestListener, Void
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
+        if (listener == null)
+            return;
         if (response != null)
             listener.onComplete(response);
         else if (error != null)

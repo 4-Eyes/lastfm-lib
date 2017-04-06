@@ -81,15 +81,18 @@ public final class LfmUtil {
         List<String> parameters = new ArrayList<>(params.keySet());
         parameters.add("method" + method);
         parameters.add("sk");
+        parameters.add("api_key");
         Collections.sort(parameters);
         StringBuilder builder = new StringBuilder();
-        builder.append("api_key").append(Lfm.getApiKey());
         for (String p : parameters) {
             if (p.equals("method" + method)) {
                 builder.append(p);
             } else if (p.equals("sk")) {
                 builder.append("sk").append(Session.sessionkey);
-            } else {
+            } else if (p.equals("api_key")) {
+                builder.append("api_key").append(Lfm.getApiKey());
+            }
+            else {
                 builder.append(p).append(params.get(p));
             }
         }
@@ -124,9 +127,9 @@ public final class LfmUtil {
         try {
             messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.reset();
-            messageDigest.update(st.getBytes());
+            messageDigest.update(st.getBytes("UTF-8"));
             digest = messageDigest.digest();
-        } catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 

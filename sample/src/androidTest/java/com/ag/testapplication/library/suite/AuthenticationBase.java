@@ -1,6 +1,5 @@
 package com.ag.testapplication.library.suite;
 
-import android.nfc.Tag;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.SmallTest;
 import android.support.test.runner.AndroidJUnit4;
@@ -29,7 +28,7 @@ public abstract class AuthenticationBase {
     static final String TEST_PASSWORD = "4b$c6Tz1XK^JtNqRn";
 
     @BeforeClass
-    public static void setUp() {
+    public static void setUp() throws Exception{
         try {
             Lfm.initializeWithSecret(InstrumentationRegistry.getInstrumentation().getTargetContext().getApplicationContext());
         } catch (Exception e) {
@@ -46,7 +45,7 @@ public abstract class AuthenticationBase {
             public void onError(LfmError error) {
                 Log.i(TAG, "Failed to log in for testing");
             }
-        });
+        }).get();
     }
 
     @AfterClass

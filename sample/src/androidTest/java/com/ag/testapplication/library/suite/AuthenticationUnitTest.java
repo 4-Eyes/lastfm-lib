@@ -1,8 +1,5 @@
 package com.ag.testapplication.library.suite;
 
-import android.app.Activity;
-import android.app.Application;
-import android.app.Instrumentation;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.SmallTest;
 import android.support.test.runner.AndroidJUnit4;
@@ -11,16 +8,12 @@ import android.util.Log;
 import com.ag.lfm.Lfm;
 import com.ag.lfm.LfmError;
 import com.ag.lfm.Session;
-import com.ag.testapplication.MainActivity;
-import com.ag.testapplication.TestApplication;
 
 import org.junit.AfterClass;
-import org.junit.Before;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import org.junit.Assert;
 
 import java.util.concurrent.ExecutionException;
 
@@ -54,6 +47,7 @@ public class AuthenticationUnitTest {
                 @Override
                 public void onResult(Session result) {
                     Log.wtf(TAG, "This should not happen");
+                    Assert.assertTrue("This was supposed to fail", false);
                 }
 
                 @Override
@@ -83,6 +77,7 @@ public class AuthenticationUnitTest {
                 @Override
                 public void onResult(Session result) {
                     Log.wtf(TAG, "This should not happen");
+                    Assert.assertTrue("This was supposed to fail", false);
                 }
 
                 @Override
@@ -119,6 +114,7 @@ public class AuthenticationUnitTest {
                 @Override
                 public void onError(LfmError error) {
                     Log.wtf(TAG, "This should not happen");
+                    Assert.assertTrue(error.toString(), false);
                 }
             }).get();
         } catch (InterruptedException | ExecutionException e) {

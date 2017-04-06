@@ -9,6 +9,6 @@ import org.junit.runners.Suite;
  */
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({AuthenticationUnitTest.class})
+@Suite.SuiteClasses({AuthenticationUnitTest.class, TrackApiUnitTest.class})
 public class ApiTestSuite {
 }

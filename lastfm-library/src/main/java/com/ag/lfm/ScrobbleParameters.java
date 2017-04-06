@@ -21,15 +21,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Class for generating Srobble signature.
  */
-public class ScrobbleParameters extends LinkedList<LfmParameters> implements Comparator<LfmParameters> {
+public class ScrobbleParameters extends LinkedList<LfmParameters> {
 
 
     String[] parametersArray = {
@@ -107,7 +105,6 @@ public class ScrobbleParameters extends LinkedList<LfmParameters> implements Com
 
     public String parseAllParameters() {
         Arrays.sort(parametersArray);
-        Collections.sort(this, this);
         StringBuilder builder = new StringBuilder();
         for (String p : parametersArray) {
             switch (p) {
@@ -125,10 +122,5 @@ public class ScrobbleParameters extends LinkedList<LfmParameters> implements Com
             }
         }
         return builder.append(Lfm.getSecret()).toString();
-    }
-
-    @Override
-    public int compare(LfmParameters lhs, LfmParameters rhs) {
-        return lhs.get("artist").compareTo(rhs.get("artist"));
     }
 }
