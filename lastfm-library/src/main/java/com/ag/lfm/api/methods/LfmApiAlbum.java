@@ -44,7 +44,11 @@ public class LfmApiAlbum extends ApiBase {
      * http://www.last.fm/api/show/album.getTags
      */
     public LfmRequest getTags(LfmParameters params) {
-        return prepareRequest("getTags", params, false);
+        if (params.get("user") == null) {
+            return prepareRequest("getTags", params, true);
+        } else {
+            return prepareRequest("getTags", params, false);
+        }
     }
 
     /**
