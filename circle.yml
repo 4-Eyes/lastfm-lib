@@ -28,6 +28,6 @@ test:
     - ./gradlew clean
     - ./gradlew build
     - ./gradlew connectedAndroidTest
-
-    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
-    - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
+  post:
+    - cp -r sample/build/outputs $CIRCLE_ARTIFACTS
+    - cp -r sample/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
