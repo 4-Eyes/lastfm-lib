@@ -3,6 +3,10 @@ machine:
   environment:
     QEMU_AUDIO_DRV: none
 
+dependencies:
+  pre:
+    - chmod +x gradlew
+
 test:
   pre:
     - emulator -avd circleci-android24 -no-window:
