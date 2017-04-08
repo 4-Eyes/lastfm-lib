@@ -1,4 +1,6 @@
 # lastfm-library
+[![CircleCI](https://circleci.com/gh/4-Eyes/lastfm-lib/tree/master.svg?style=shield)](https://circleci.com/gh/4-Eyes/lastfm-lib/tree/master)
+
 Gradle:
 ```groovy
 compile 'com.github.ag:lastfm-library:1.0.2
