@@ -19,6 +19,8 @@ import com.ag.lfm.LfmParameters;
 import com.ag.lfm.LfmRequest;
 import com.ag.lfm.ScrobbleParameters;
 
+import java.util.AbstractMap.SimpleEntry;
+import java.util.Collection;
 import java.util.Locale;
 
 /**
@@ -35,8 +37,17 @@ public abstract class ApiBase {
         return new LfmRequest(String.format(Locale.US,"%s.%s",getMethodsGroup(),methodName),methodParameters,needAuth);
     }
 
-    protected LfmRequest prepareRequest(ScrobbleParameters methodParameters){
+    protected LfmRequest prepareRequest(ScrobbleParameters methodParameters) {
         return new LfmRequest(methodParameters);
+    }
+
+    protected LfmParameters generateParamters(Collection<SimpleEntry<String, Object>> parameters) {
+        LfmParameters params = new LfmParameters();
+        for (SimpleEntry<String, Object> parameter : parameters) {
+            if (parameter.getValue() == null) continue;
+            params.put(parameter.getKey(), parameter.getValue().toString());
+        }
+        return params;
     }
 
 }
