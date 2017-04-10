@@ -52,7 +52,14 @@ public class LfmApiUser extends ApiBase {
     public LfmRequest getInfo() {
         LfmParameters parameters = new LfmParameters();
         parameters.put("user", Session.username);
-        return prepareRequest("getInfo",parameters, false);
+        return prepareRequest("getInfo", parameters, false);
+    }
+
+    /**
+     * http://www.last.fm/api/show/user.getInfo
+     */
+    public LfmRequest getInfo(LfmParameters params) {
+        return prepareRequest("getInfo", params, false);
     }
 
     /**

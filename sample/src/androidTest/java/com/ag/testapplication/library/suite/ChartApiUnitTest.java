@@ -27,7 +27,20 @@ public class ChartApiUnitTest extends AuthenticationBase {
 
     @Test
     public void getTopArtists() throws Exception {
+        LfmRequest request = LfmApi.charts().getTopArtists();
+        request.executeWithListener(new LfmRequest.LfmRequestListener() {
+            @Override
+            public void onComplete(JSONObject response) {
+                Log.i(TAG, "Get top artists response: " + response.toString());
+                Assert.assertNotNull("We should have got artists back", response.optJSONObject("artists"));
+            }
 
+            @Override
+            public void onError(LfmError error) {
+                Log.wtf(TAG, "This should not happen");
+                Assert.assertTrue(error.toString(), false);
+            }
+        }).get();
     }
 
     @Test
@@ -53,5 +66,31 @@ public class ChartApiUnitTest extends AuthenticationBase {
 
     @Test
     public void getTopTracks() throws Exception {
+        LfmParameters params = new LfmParameters();
+        params.put("limit", "20");
+        params.put("page", "1");
+        LfmRequest request = LfmApi.charts().getTopTracks(params);
+        request.executeWithListener(new LfmRequest.LfmRequestListener() {
+            @Override
+            public void onComplete(JSONObject response) {
+                Log.i(TAG, "Get top tracks response: " + response.toString());
+                try {
+                    JSONObject toptracks = response.getJSONObject("tracks");
+                    JSONObject attr = toptracks.getJSONObject("@attr");
+                    Assert.assertEquals("Should have retrieved 20 tracks", "20", attr.getString("perPage"));
+                    Assert.assertEquals("Should be on page 1", "1", attr.getString("page"));
+                } catch (Exception e) {
+                    Log.e(TAG, e.getMessage());
+                    e.printStackTrace();
+                    Assert.assertTrue("Failed to parse object", false);
+                }
+            }
+
+            @Override
+            public void onError(LfmError error) {
+                Log.wtf(TAG, "This should not happen");
+                Assert.assertTrue(error.toString(), false);
+            }
+        }).get();
     }
 }
