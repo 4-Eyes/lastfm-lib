@@ -3,6 +3,7 @@ package com.ag.lfm.api.methods;
 
 import com.ag.lfm.LfmParameters;
 import com.ag.lfm.LfmRequest;
+import com.ag.lfm.util.ISO639;
 import com.ag.lfm.util.LfmUtil;
 
 import java.util.Arrays;
@@ -36,7 +37,7 @@ public class LfmApiArtist extends ApiBase {
         return getInfo(null, mbid, null, null, null);
     }
 
-    public LfmRequest getInfo(String artist, UUID mbid, String lang, Boolean autocorrect,
+    public LfmRequest getInfo(String artist, UUID mbid, ISO639 lang, Boolean autocorrect,
                               String username) {
         LfmParameters params = generateParamters(
                 QueryKeys.ARTIST.generateKeyValue(artist),

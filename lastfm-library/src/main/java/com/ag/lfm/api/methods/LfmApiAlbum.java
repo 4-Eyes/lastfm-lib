@@ -18,6 +18,7 @@ package com.ag.lfm.api.methods;
 
 import com.ag.lfm.LfmParameters;
 import com.ag.lfm.LfmRequest;
+import com.ag.lfm.util.ISO639;
 import com.ag.lfm.util.LfmUtil;
 
 import java.util.Locale;
@@ -91,11 +92,11 @@ public class LfmApiAlbum extends ApiBase {
      * @param mbid the MusicBrainz ID for the album (optional)
      * @param autocorrect whether or not to autocorrect artist names and return the corrected names (optional field)
      * @param username the username of the account to append additional details about, such as play count (optional field)
-     * @param lang the language to return the biography in, should be expressed as 639 alpha-2 code (optional field)
+     * @param lang the language to return the biography in, should be expressed as ISO 639-1 Code (optional field)
      * @return the request for getting album details.
      */
     public LfmRequest getInfo(String artist, String album, UUID mbid, Boolean autocorrect,
-                              String username, String lang) {
+                              String username, ISO639 lang) {
         LfmParameters params = generateParamters(
                 QueryKeys.ARTIST.generateKeyValue(artist),
                 QueryKeys.ALBUM.generateKeyValue(album),

@@ -1,5 +1,8 @@
 package com.ag.lfm.api.methods;
 
+import com.ag.lfm.util.ISO3166;
+import com.ag.lfm.util.ISO639;
+
 import java.util.AbstractMap.SimpleEntry;
 import java.util.function.Function;
 
@@ -12,19 +15,19 @@ public enum QueryKeys {
     ALBUM("album"),
     TAGS("tags"),
     MUSICBRAINZ_ID("mbid"),
-    AUTOCORRECT("autocorrect"),// (autocorrect) -> (Boolean) autocorrect ? "1" : "0"),
+    AUTOCORRECT("autocorrect", (autocorrect) -> (Boolean) autocorrect ? "1" : "0"),
     USERNAME("username"),
-    LANGUAGE("language"),
+    LANGUAGE("lang", (language) -> ((ISO639) language).getCode()),
     USER("user"),
     TAG("tag"),
     LIMIT("limit"),
-    PAGE("page");
+    PAGE("page"),
+    COUNTRY("country", (country) -> ((ISO3166) country).getCountryName());
 
     private final String key;
     private final Function<Object, String> conversionFunction;
 
     QueryKeys(String key) {
-//        this.key = key;
         this(key, null);
     }
 
@@ -41,7 +44,6 @@ public enum QueryKeys {
         if (value != null && this.conversionFunction != null) {
             return new SimpleEntry<>(this.key, conversionFunction.apply(value));
         } else if (value != null) {
-//        if (value != null) {
             return new SimpleEntry<>(this.key, value.toString());
         }
         return new SimpleEntry<>(this.key, null);
