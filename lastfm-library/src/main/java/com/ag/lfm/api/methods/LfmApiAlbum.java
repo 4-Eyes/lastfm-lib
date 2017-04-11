@@ -20,8 +20,8 @@ import com.ag.lfm.LfmParameters;
 import com.ag.lfm.LfmRequest;
 import com.ag.lfm.util.LfmUtil;
 
-import java.util.Arrays;
 import java.util.Locale;
+import java.util.UUID;
 
 @SuppressWarnings("unused")
 public class LfmApiAlbum extends ApiBase {
@@ -43,10 +43,9 @@ public class LfmApiAlbum extends ApiBase {
      */
     public LfmRequest addTags(String artist, String album, String tags) {
         LfmParameters params = generateParamters(
-                Arrays.asList(
-                        QueryKeys.ARTIST.generateKeyValue(artist),
-                        QueryKeys.ALBUM.generateKeyValue(album),
-                        QueryKeys.TAGS.generateKeyValue(tags)));
+                QueryKeys.ARTIST.generateKeyValue(artist),
+                QueryKeys.ALBUM.generateKeyValue(album),
+                QueryKeys.TAGS.generateKeyValue(tags));
         return prepareRequest("addTags",
                 params, true);
     }
@@ -76,7 +75,7 @@ public class LfmApiAlbum extends ApiBase {
      * @param mbid the MusicBrainz ID for the album (required)
      * @return the request for getting album details.
      */
-    public LfmRequest getInfo(String mbid) {
+    public LfmRequest getInfo(UUID mbid) {
         return getInfo(null, null, mbid, null, null, null);
     }
 
@@ -90,21 +89,20 @@ public class LfmApiAlbum extends ApiBase {
      * @param artist the name of the artist linked to the album (required field unless mbid provided)
      * @param album the name of the album which you wish to get information about (required field unless mbid provided)
      * @param mbid the MusicBrainz ID for the album (optional)
-     * @param autocorrect whether or not to autocorrect artist names and return the corrected names, 0 for false 1 for true (optional field)
+     * @param autocorrect whether or not to autocorrect artist names and return the corrected names (optional field)
      * @param username the username of the account to append additional details about, such as play count (optional field)
      * @param lang the language to return the biography in, should be expressed as 639 alpha-2 code (optional field)
      * @return the request for getting album details.
      */
-    public LfmRequest getInfo(String artist, String album, String mbid, Integer autocorrect,
+    public LfmRequest getInfo(String artist, String album, UUID mbid, Boolean autocorrect,
                               String username, String lang) {
         LfmParameters params = generateParamters(
-                Arrays.asList(
-                        QueryKeys.ARTIST.generateKeyValue(artist),
-                        QueryKeys.ALBUM.generateKeyValue(album),
-                        QueryKeys.MUSICBRAINZ_ID.generateKeyValue(mbid),
-                        QueryKeys.AUTOCORRECT.generateKeyValue(autocorrect),
-                        QueryKeys.USERNAME.generateKeyValue(username),
-                        QueryKeys.LANGUAGE.generateKeyValue(lang)));
+                QueryKeys.ARTIST.generateKeyValue(artist),
+                QueryKeys.ALBUM.generateKeyValue(album),
+                QueryKeys.MUSICBRAINZ_ID.generateKeyValue(mbid),
+                QueryKeys.AUTOCORRECT.generateKeyValue(autocorrect),
+                QueryKeys.USERNAME.generateKeyValue(username),
+                QueryKeys.LANGUAGE.generateKeyValue(lang));
         return prepareRequest("getInfo", params, false);
     }
 
@@ -112,19 +110,18 @@ public class LfmApiAlbum extends ApiBase {
         return getTags(artist, album, null, null, null);
     }
 
-    public LfmRequest getTags(String mbid) {
+    public LfmRequest getTags(UUID mbid) {
         return getTags(null, null, mbid, null, null);
     }
 
-    public LfmRequest getTags(String artist, String album, String mbid,
-                              Integer autocorrect, String user) {
+    public LfmRequest getTags(String artist, String album, UUID mbid,
+                              Boolean autocorrect, String user) {
         LfmParameters params = generateParamters(
-                Arrays.asList(
-                        QueryKeys.ARTIST.generateKeyValue(artist),
-                        QueryKeys.ALBUM.generateKeyValue(album),
-                        QueryKeys.MUSICBRAINZ_ID.generateKeyValue(mbid),
-                        QueryKeys.AUTOCORRECT.generateKeyValue(autocorrect),
-                        QueryKeys.USER.generateKeyValue(user)));
+                QueryKeys.ARTIST.generateKeyValue(artist),
+                QueryKeys.ALBUM.generateKeyValue(album),
+                QueryKeys.MUSICBRAINZ_ID.generateKeyValue(mbid),
+                QueryKeys.AUTOCORRECT.generateKeyValue(autocorrect),
+                QueryKeys.USER.generateKeyValue(user));
         return prepareRequest("getTags", params, !params.containsKey(QueryKeys.USER.getKey()));
     }
 
@@ -132,30 +129,24 @@ public class LfmApiAlbum extends ApiBase {
         return getTopTags(artist, album, null, null);
     }
 
-    public LfmRequest getTopTags(String mbid) {
+    public LfmRequest getTopTags(UUID mbid) {
         return getTopTags(null, null, mbid, null);
     }
 
-    public LfmRequest getTopTags(String artist, String album, String mbid, Integer autocorrect) {
+    public LfmRequest getTopTags(String artist, String album, UUID mbid, Boolean autocorrect) {
         LfmParameters params = generateParamters(
-                Arrays.asList(
-                        QueryKeys.ARTIST.generateKeyValue(artist),
-                        QueryKeys.ALBUM.generateKeyValue(album),
-                        QueryKeys.MUSICBRAINZ_ID.generateKeyValue(mbid),
-                        QueryKeys.AUTOCORRECT.generateKeyValue(autocorrect)
-                )
-        );
+                QueryKeys.ARTIST.generateKeyValue(artist),
+                QueryKeys.ALBUM.generateKeyValue(album),
+                QueryKeys.MUSICBRAINZ_ID.generateKeyValue(mbid),
+                QueryKeys.AUTOCORRECT.generateKeyValue(autocorrect));
         return prepareRequest("getTopTags", params, false);
     }
 
     public LfmRequest removeTag(String artist, String album, String tag) {
         LfmParameters params = generateParamters(
-                Arrays.asList(
-                        QueryKeys.ARTIST.generateKeyValue(artist),
-                        QueryKeys.ALBUM.generateKeyValue(album),
-                        QueryKeys.TAG.generateKeyValue(tag)
-                )
-        );
+                QueryKeys.ARTIST.generateKeyValue(artist),
+                QueryKeys.ALBUM.generateKeyValue(album),
+                QueryKeys.TAG.generateKeyValue(tag));
         return prepareRequest("removeTag", params, true);
     }
 
@@ -165,12 +156,9 @@ public class LfmApiAlbum extends ApiBase {
 
     public LfmRequest search(String album, Integer limit, Integer page) {
         LfmParameters params = generateParamters(
-                Arrays.asList(
-                        QueryKeys.ALBUM.generateKeyValue(album),
-                        QueryKeys.LIMIT.generateKeyValue(limit),
-                        QueryKeys.PAGE.generateKeyValue(page)
-                )
-        );
+                QueryKeys.ALBUM.generateKeyValue(album),
+                QueryKeys.LIMIT.generateKeyValue(limit),
+                QueryKeys.PAGE.generateKeyValue(page));
         return prepareRequest("search", params, false);
     }
 

@@ -41,11 +41,12 @@ public abstract class ApiBase {
         return new LfmRequest(methodParameters);
     }
 
-    protected LfmParameters generateParamters(Collection<SimpleEntry<String, Object>> parameters) {
+    @SafeVarargs
+    protected final LfmParameters generateParamters(SimpleEntry<String, String>... parameters) {
         LfmParameters params = new LfmParameters();
-        for (SimpleEntry<String, Object> parameter : parameters) {
+        for (SimpleEntry<String, String> parameter : parameters) {
             if (parameter.getValue() == null) continue;
-            params.put(parameter.getKey(), parameter.getValue().toString());
+            params.put(parameter.getKey(), parameter.getValue());
         }
         return params;
     }

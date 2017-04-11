@@ -158,6 +158,21 @@ public class AlbumApiUnitTest extends AuthenticationBase {
                 Assert.assertTrue(error.toString(), false);
             }
         }).get();
+
+        request = LfmApi.album().getTags("Muse", "Drones", null, true, "AlmightyTaniwha");
+        request.executeWithListener(new LfmRequest.LfmRequestListener() {
+            @Override
+            public void onComplete(JSONObject response) {
+                Log.i(TAG, "Get tags response: " + response.toString());
+                Assert.assertNotNull("The response should contain tags", response.optJSONObject("tags"));
+            }
+
+            @Override
+            public void onError(LfmError error) {
+                Log.wtf(TAG, "This should not happen");
+                Assert.assertTrue(error.toString(), false);
+            }
+        }).get();
     }
 
     @Test
