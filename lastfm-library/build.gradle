@@ -1,8 +1,6 @@
 apply plugin: "com.android.library"
 apply plugin: 'com.novoda.bintray-release'
 
-
-
 android {
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
@@ -35,12 +33,6 @@ android {
         quiet false
         abortOnError false
         ignoreWarnings false
-    }
-}
-
-gradle.projectsEvaluated {
-    tasks.withType(JavaCompile) {
-        options.compilerArgs << "-Xbootclasspath/a:" + System.properties.get("java.home") + "/lib/rt.jar"
     }
 }
 
