@@ -58,6 +58,7 @@ public class LfmApiGeo extends ApiBase {
     /**
      * http://www.last.fm/api/show/geo.getTopArtists
      */
+    @Deprecated
     public LfmRequest getTopArtists(LfmParameters params) {
         return prepareRequest("getTopArtists", params, false);
     }
@@ -65,6 +66,7 @@ public class LfmApiGeo extends ApiBase {
     /**
      * http://www.last.fm/api/show/geo.getTopTracks
      */
+    @Deprecated
     public LfmRequest getTopTracks(LfmParameters params) {
         return prepareRequest("getTopTracks", params, false);
     }
