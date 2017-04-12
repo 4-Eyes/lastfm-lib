@@ -22,13 +22,33 @@ import com.ag.lfm.LfmRequest;
 @SuppressWarnings("unused")
 public class LfmApiLibrary extends ApiBase {
 
+    //region new method signatures
+
+    public LfmRequest getArtists(String user) {
+        return getArtists(user, null, null);
+    }
+
+    private LfmRequest getArtists(String user, Integer limit, Integer page) {
+        LfmParameters params = generateParamters(
+                QueryKeys.USER.generateKeyValue(user),
+                QueryKeys.LIMIT.generateKeyValue(limit),
+                QueryKeys.PAGE.generateKeyValue(page));
+        return prepareRequest("getArtists", params, false);
+    }
+
+    //endregion
+
+    //region old methods
 
     /**
      * http://www.last.fm/api/show/library.getArtists
      */
+    @Deprecated
     public LfmRequest getArtists(LfmParameters params) {
         return prepareRequest("getArtists", params, false);
     }
+
+    //endregion
 
     @Override
     protected String getMethodsGroup() {

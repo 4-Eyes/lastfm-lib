@@ -3,10 +3,12 @@
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.1'
         classpath 'com.novoda:bintray-release:0.3.4'
+        classpath 'me.tatarka:gradle-retrolambda:3.6.0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -15,7 +17,21 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        mavenCentral()
     }
+
+    apply plugin: 'me.tatarka.retrolambda'
+
+//    tasks.withType(JavaCompile) {
+//        sourceCompatibility = 1.7
+//        targetCompatibility = 1.7
+//    }
+//
+//    gradle.projectsEvaluated {
+//        tasks.withType(JavaCompile) {
+//            options.compilerArgs << "-Xbootclasspath/a:" + System.properties.get("java.home") + "/lib/rt.jar"
+//        }
+//    }
 }
 
 task clean(type: Delete) {

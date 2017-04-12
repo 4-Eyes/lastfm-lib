@@ -21,6 +21,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -69,11 +70,16 @@ public class ScrobbleParameters extends LinkedList<LfmParameters> {
     }
 
     public String parseSinglePrameter(String p) {
-        StringBuilder builder = new StringBuilder();
+        List<String> strings = new ArrayList<>();
         for (int i = 0; i < this.size(); i++) {
             if (this.get(i).containsKey(p)) {
-                builder.append(p).append("[").append(i).append("]").append(this.get(i).get(p));
+                strings.add(p + "[" + i + "]" + this.get(i).get(p));
             }
+        }
+        Collections.sort(strings);
+        StringBuilder builder = new StringBuilder();
+        for (String string : strings) {
+            builder.append(string);
         }
         return builder.toString();
     }

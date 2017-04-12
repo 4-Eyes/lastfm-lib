@@ -18,13 +18,47 @@ package com.ag.lfm.api.methods;
 
 import com.ag.lfm.LfmParameters;
 import com.ag.lfm.LfmRequest;
+import com.ag.lfm.util.ISO3166;
 
 @SuppressWarnings("unused")
 public class LfmApiGeo extends ApiBase {
 
+    //region new method signatures
+
+    public LfmRequest getTopArtists(ISO3166 country) {
+        return getTopArtists(country, null, null);
+    }
+
+    public LfmRequest getTopArtists(ISO3166 country, Integer limit, Integer page) {
+        LfmParameters params = generateParamters(
+                QueryKeys.COUNTRY.generateKeyValue(country),
+                QueryKeys.LIMIT.generateKeyValue(limit),
+                QueryKeys.PAGE.generateKeyValue(page)
+        );
+        return prepareRequest("getTopArtists", params, false);
+    }
+
+    public LfmRequest getTopTracks(ISO3166 country) {
+        return getTopTracks(country, null, null, null);
+    }
+
+    public LfmRequest getTopTracks(ISO3166 country, String location, Integer limit, Integer page) {
+        LfmParameters params = generateParamters(
+                QueryKeys.COUNTRY.generateKeyValue(country),
+                QueryKeys.LIMIT.generateKeyValue(limit),
+                QueryKeys.PAGE.generateKeyValue(page)
+        );
+        return prepareRequest("getTopArtists", params, false);
+    }
+
+    //endregion
+
+    //region old methods
+
     /**
      * http://www.last.fm/api/show/geo.getTopArtists
      */
+    @Deprecated
     public LfmRequest getTopArtists(LfmParameters params) {
         return prepareRequest("getTopArtists", params, false);
     }
@@ -32,9 +66,12 @@ public class LfmApiGeo extends ApiBase {
     /**
      * http://www.last.fm/api/show/geo.getTopTracks
      */
+    @Deprecated
     public LfmRequest getTopTracks(LfmParameters params) {
         return prepareRequest("getTopTracks", params, false);
     }
+
+    //endregion
 
     @Override
     protected String getMethodsGroup() {

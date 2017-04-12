@@ -22,17 +22,49 @@ import com.ag.lfm.LfmRequest;
 @SuppressWarnings("unused")
 public class LfmApiChart extends ApiBase {
 
+    //region new method signatures
 
-    /**
-     * http://www.last.fm/api/show/chart.getTopArtists
-     */
     public LfmRequest getTopArtists() {
-        return prepareRequest("getTopArtists", null, false);
+        return getTopArtists(null, null);
     }
 
+    public LfmRequest getTopArtists(Integer page, Integer limit) {
+        LfmParameters params = generateParamters(
+                QueryKeys.PAGE.generateKeyValue(page),
+                QueryKeys.LIMIT.generateKeyValue(limit));
+        return prepareRequest("getTopArtists", params, false);
+    }
+
+    public LfmRequest getTopTags() {
+        return getTopArtists(null, null);
+    }
+
+    public LfmRequest getTopTags(Integer page, Integer limit) {
+        LfmParameters params = generateParamters(
+                QueryKeys.PAGE.generateKeyValue(page),
+                QueryKeys.LIMIT.generateKeyValue(limit));
+        return prepareRequest("getTopTags", params, false);
+    }
+
+    public LfmRequest getTopTracks() {
+        return getTopArtists(null, null);
+    }
+
+    public LfmRequest getTopTracks(Integer page, Integer limit) {
+        LfmParameters params = generateParamters(
+                QueryKeys.PAGE.generateKeyValue(page),
+                QueryKeys.LIMIT.generateKeyValue(limit));
+        return prepareRequest("getTopTracks", params, false);
+    }
+
+    //endregion
+
+    //region old methods
+
     /**
      * http://www.last.fm/api/show/chart.getTopArtists
      */
+    @Deprecated
     public LfmRequest getTopArtists(LfmParameters params) {
         return prepareRequest("getTopArtists", params, false);
     }
@@ -40,13 +72,7 @@ public class LfmApiChart extends ApiBase {
     /**
      * http://www.last.fm/api/show/chart.getTopTags
      */
-    public LfmRequest getTopTags() {
-        return prepareRequest("getTopTags", null, false);
-    }
-
-    /**
-     * http://www.last.fm/api/show/chart.getTopTags
-     */
+    @Deprecated
     public LfmRequest getTopTags(LfmParameters params) {
         return prepareRequest("getTopTags", params, false);
     }
@@ -54,18 +80,12 @@ public class LfmApiChart extends ApiBase {
     /**
      * http://www.last.fm/api/show/chart.getTopTracks
      */
-    public LfmRequest getTopTracks(){
-        return prepareRequest("getTopTracks",null,false);
-    }
-
-    /**
-     * http://www.last.fm/api/show/chart.getTopTracks
-     */
+    @Deprecated
     public LfmRequest getTopTracks(LfmParameters params){
         return prepareRequest("getTopTracks",params,false);
     }
 
-
+    //endregion
 
     @Override
     protected String getMethodsGroup() {

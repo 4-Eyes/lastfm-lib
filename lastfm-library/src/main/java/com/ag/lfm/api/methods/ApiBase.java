@@ -19,6 +19,8 @@ import com.ag.lfm.LfmParameters;
 import com.ag.lfm.LfmRequest;
 import com.ag.lfm.ScrobbleParameters;
 
+import java.util.AbstractMap.SimpleEntry;
+import java.util.Collection;
 import java.util.Locale;
 
 /**
@@ -32,11 +34,37 @@ public abstract class ApiBase {
     protected abstract String getMethodsGroup();
 
     protected LfmRequest prepareRequest(String methodName, LfmParameters methodParameters, boolean needAuth) {
-        return new LfmRequest(String.format(Locale.US,"%s.%s",getMethodsGroup(),methodName),methodParameters,needAuth);
+        return new LfmRequest(String.format(Locale.US, "%s.%s", getMethodsGroup(), methodName), methodParameters, needAuth);
     }
 
-    protected LfmRequest prepareRequest(ScrobbleParameters methodParameters){
+    protected LfmRequest prepareRequest(ScrobbleParameters methodParameters) {
         return new LfmRequest(methodParameters);
     }
 
+    @SafeVarargs
+    protected final LfmParameters generateParamters(SimpleEntry<String, String>... parameters) {
+        LfmParameters params = new LfmParameters();
+        for (SimpleEntry<String, String> parameter : parameters) {
+            if (parameter.getValue() == null) continue;
+            params.put(parameter.getKey(), parameter.getValue());
+        }
+        return params;
+    }
+
+    @SafeVarargs
+    protected final ScrobbleParameters generateScrobbleParameters(SimpleEntry<String, Collection<String>>... scrobbleParameters) {
+        ScrobbleParameters params = new ScrobbleParameters();
+        for (SimpleEntry<String, Collection<String>> parameter : scrobbleParameters) {
+            if (parameter.getValue() == null) continue;
+            params.put(parameter.getKey(), parameter.getValue().toArray(new String[parameter.getValue().size()]));
+        }
+        return params;
+    }
+
+    protected final Object[] arrayOrNull(Collection arg) {
+        if (arg == null) {
+            return null;
+        }
+        return arg.toArray();
+    }
 }

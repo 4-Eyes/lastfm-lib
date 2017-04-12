@@ -86,7 +86,7 @@ public class AuthOperation extends AsyncTask<Lfm.LfmCallback<Session>, Void, Voi
     @Override
     protected final Void doInBackground(Lfm.LfmCallback<Session>... params) {
         this.callback = params[0];
-        authorize(params[0]);
+        authorize();
         return null;
     }
 
@@ -109,7 +109,7 @@ public class AuthOperation extends AsyncTask<Lfm.LfmCallback<Session>, Void, Voi
     }
 
 
-    private void authorize(Lfm.LfmCallback<Session> callback) {
+    private void authorize() {
         HttpURLConnection connection = null;
         BufferedReader reader = null;
         StringBuffer buffer;

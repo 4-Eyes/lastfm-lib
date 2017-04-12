@@ -18,13 +18,91 @@ package com.ag.lfm.api.methods;
 
 import com.ag.lfm.LfmParameters;
 import com.ag.lfm.LfmRequest;
+import com.ag.lfm.util.ISO639;
 
 @SuppressWarnings("unused")
 public class LfmApiTag extends ApiBase {
 
+    //region new method signatures
+
+    public LfmRequest getInfo(String tag) {
+        return getInfo(tag, null);
+    }
+
+    public LfmRequest getInfo(String tag, ISO639 lang) {
+        LfmParameters params = generateParamters(
+                QueryKeys.TAG.generateKeyValue(tag),
+                QueryKeys.LANGUAGE.generateKeyValue(lang)
+        );
+        return prepareRequest("getInfo", params, false);
+    }
+
+    public LfmRequest getSimilar(String tag) {
+        LfmParameters params = generateParamters(
+                QueryKeys.TAG.generateKeyValue(tag)
+        );
+        return prepareRequest("getSimilar", params, false);
+    }
+
+
+    public LfmRequest getTopAlbums(String tag) {
+        return getTopAlbums(tag, null, null);
+    }
+
+    public LfmRequest getTopAlbums(String tag, Integer limit, Integer page) {
+        LfmParameters params = generateParamters(
+                QueryKeys.TAG.generateKeyValue(tag),
+                QueryKeys.LIMIT.generateKeyValue(limit),
+                QueryKeys.PAGE.generateKeyValue(page)
+        );
+        return prepareRequest("getTopAlbums", params, false);
+    }
+
+    public LfmRequest getTopArtist(String tag) {
+        return getTopArtist(tag, null, null);
+    }
+
+    public LfmRequest getTopArtist(String tag, Integer limit, Integer page) {
+        LfmParameters params = generateParamters(
+                QueryKeys.TAG.generateKeyValue(tag),
+                QueryKeys.LIMIT.generateKeyValue(limit),
+                QueryKeys.PAGE.generateKeyValue(page)
+        );
+        return prepareRequest("getTopArtist", params, false);
+    }
+
+    public LfmRequest getTopTags() {
+        return prepareRequest("getTopTags", new LfmParameters(), false);
+    }
+
+    public LfmRequest getTopTracks(String tag) {
+        return getTopTracks(tag, null, null);
+    }
+
+    public LfmRequest getTopTracks(String tag, Integer limit, Integer page) {
+        LfmParameters params = generateParamters(
+                QueryKeys.TAG.generateKeyValue(tag),
+                QueryKeys.LIMIT.generateKeyValue(limit),
+                QueryKeys.PAGE.generateKeyValue(page)
+        );
+        return prepareRequest("getTopTracks", params, false);
+    }
+
+    public LfmRequest getWeeklyChartList(String tag) {
+        LfmParameters params = generateParamters(
+                QueryKeys.TAG.generateKeyValue(tag)
+        );
+        return prepareRequest("getWeeklyChartList", params, false);
+    }
+
+    //endregion
+
+    //region old methods
+
     /**
      * http://www.last.fm/api/show/tag.getInfo
      */
+    @Deprecated
     public LfmRequest getInfo(LfmParameters params) {
         return prepareRequest("getInfo", params, false);
     }
@@ -32,6 +110,7 @@ public class LfmApiTag extends ApiBase {
     /**
      * http://www.last.fm/api/show/tag.getSimilar
      */
+    @Deprecated
     public LfmRequest getSimilar(LfmParameters params) {
         return prepareRequest("getSimilar", params, false);
     }
@@ -39,6 +118,7 @@ public class LfmApiTag extends ApiBase {
     /**
      * http://www.last.fm/api/show/tag.getTopAlbums
      */
+    @Deprecated
     public LfmRequest getTopAlbums(LfmParameters params) {
         return prepareRequest("getTopAlbums", params, false);
     }
@@ -46,6 +126,7 @@ public class LfmApiTag extends ApiBase {
     /**
      * http://www.last.fm/api/show/tag.getTopArtists
      */
+    @Deprecated
     public LfmRequest getTopArtists(LfmParameters params) {
         return prepareRequest("getTopArtists", params, false);
     }
@@ -53,6 +134,7 @@ public class LfmApiTag extends ApiBase {
     /**
      * http://www.last.fm/api/show/tag.getTopTags
      */
+    @Deprecated
     public LfmRequest getTopTags(LfmParameters params) {
         return prepareRequest("getTopTags", params, false);
     }
@@ -60,6 +142,7 @@ public class LfmApiTag extends ApiBase {
     /**
      * http://www.last.fm/api/show/tag.getTopTracks
      */
+    @Deprecated
     public LfmRequest getTopTracks(LfmParameters params) {
         return prepareRequest("getTopTracks", params, false);
     }
@@ -67,9 +150,12 @@ public class LfmApiTag extends ApiBase {
     /**
      * http://www.last.fm/api/show/tag.getWeeklyChartList
      */
+    @Deprecated
     public LfmRequest getWeeklyChartList(LfmParameters params) {
         return prepareRequest("getWeeklyChartList", params, false);
     }
+
+    //endregion
 
     @Override
     protected String getMethodsGroup() {
