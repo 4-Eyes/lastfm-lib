@@ -4,6 +4,9 @@ import com.ag.lfm.util.ISO3166;
 import com.ag.lfm.util.ISO639;
 
 import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 import java.util.function.Function;
 
 /**
@@ -22,7 +25,13 @@ public enum QueryKeys {
     TAG("tag"),
     LIMIT("limit"),
     PAGE("page"),
-    COUNTRY("country", (country) -> ((ISO3166) country).getCountryName());
+    COUNTRY("country", (country) -> ((ISO3166) country).getCountryName()),
+    TRACK("track"),
+    TIMESTAMP("timestamp", (timestamp) -> String.valueOf(((Date) timestamp).getTime() / 1000)),
+    CHOSEN_BY_USER("chosenByUser", (chosenByUser) -> (Boolean) chosenByUser ? "1" : "0"),
+    TRACK_NUMBER("trackNumber"),
+    ALBUM_ARTIST("albumArtist"),
+    DURATION("duration");
 
     private final String key;
     private final Function<Object, String> conversionFunction;
@@ -45,6 +54,23 @@ public enum QueryKeys {
             return new SimpleEntry<>(this.key, conversionFunction.apply(value));
         } else if (value != null) {
             return new SimpleEntry<>(this.key, value.toString());
+        }
+        return new SimpleEntry<>(this.key, null);
+    }
+
+    public SimpleEntry<String, Collection<String>> generateScrobbleKeyValues(Object... values) {
+        if (values != null && this.conversionFunction != null && values.length > 0) {
+            Collection<String> convertedValues = new ArrayList<>();
+            for (Object value : values) {
+                convertedValues.add(this.conversionFunction.apply(value));
+            }
+            return new SimpleEntry<>(this.key, convertedValues);
+        } else if (values != null && values.length > 0) {
+            Collection<String> stringValues = new ArrayList<>();
+            for (Object value: values) {
+                stringValues.add(value.toString());
+            }
+            return new SimpleEntry<>(this.key, stringValues);
         }
         return new SimpleEntry<>(this.key, null);
     }

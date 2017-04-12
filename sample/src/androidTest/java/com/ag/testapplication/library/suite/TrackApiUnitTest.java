@@ -15,6 +15,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+
 /**
  * Created by 4-Eyes on 05/04/2017.
  */
@@ -238,6 +242,56 @@ public class TrackApiUnitTest extends AuthenticationBase {
                 Log.i(TAG, response.toString());
                 try {
                     Assert.assertEquals("Should have accepted 5 scrobble", 5, response.getJSONObject("scrobbles").getJSONObject("@attr").getInt("accepted"));
+                } catch (Exception e) {
+                    Log.e(TAG, e.getMessage());
+                    e.printStackTrace();
+                    Assert.assertTrue("Failed to parse object", false);
+                }
+            }
+
+            @Override
+            public void onError(LfmError error) {
+                Log.wtf(TAG, "This should not happen");
+                Assert.assertTrue(error.toString(), false);
+            }
+        }).get();
+    }
+
+    @Test
+    public void scrobbleMultipleUpdated() throws Exception {
+        Collection<String> tracks = Arrays.asList("Farewell To The Fairground (Single Mix)",
+                "Starlight", "The Cave", "Afterlife (feat. Echos)",
+                "Running to the Sea - Seven Lions Remix", "Queen of Peace", "Keeping Your Head Up",
+                "I'm a Ruin", "Mowgli's Road", "Anybody Out There", "Growing Pains", "Memories",
+                "Save Yourself", "Angels", "Wild Horses", "Take My Heart");
+        Collection<String> artists = Arrays.asList("White Lies", "Muse", "Mumford & Sons",
+                "Illenium", "Röyksopp", "Florence + the Machine", "Birdy", "Marina & the Diamonds",
+                "Marina & the Diamonds", "Gabrielle Aplin", "Birdy", "ONE OK ROCK", "Birdy",
+                "Within Temptation", "Birdy", "Birdy");
+        Collection<String> albums = Arrays.asList("Farewell To The Fairground",
+                "Black Holes And Revelations", "Sigh No More", "Ashes",
+                "Running to the Sea (Remixes)", "How Big, How Blue, How Beautiful (Deluxe)",
+                "Beautiful Lies (Deluxe)", "FROOT", "The Family Jewels", "Light Up the Dark (Deluxe Edition)",
+                "Beautiful Lies (Deluxe)", "35xxxv (Deluxe Edition)", "Beautiful Lies (Deluxe)",
+                "The Silent Force", "Beautiful Lies (Deluxe)", "Beautiful Lies (Deluxe)");
+        long currentTimeStamp = System.currentTimeMillis();
+        Collection<Date> timestamps = Arrays.asList(new Date(currentTimeStamp - 4 * 60000), new Date(currentTimeStamp - 2 * 4 * 60000),
+                new Date(currentTimeStamp - 3 * 4 * 60000), new Date(currentTimeStamp - 4 * 4 * 60000),
+                new Date(currentTimeStamp - 5 * 4 * 60000), new Date(currentTimeStamp - 6 * 4 * 60000),
+                new Date(currentTimeStamp - 7 * 4 * 60000), new Date(currentTimeStamp - 8 * 4 * 60000),
+                new Date(currentTimeStamp - 9 * 4 * 60000), new Date(currentTimeStamp - 10 * 4 * 60000),
+                new Date(currentTimeStamp - 11 * 4 * 60000), new Date(currentTimeStamp - 12 * 4 * 60000),
+                new Date(currentTimeStamp - 13 * 4 * 60000), new Date(currentTimeStamp - 14 * 4 * 60000),
+                new Date(currentTimeStamp - 15 * 4 * 60000), new Date(currentTimeStamp - 16 * 4 * 60000)
+                );
+        final LfmRequest request = LfmApi.track().scrobble(artists, tracks, timestamps, albums,
+                null, null, null, null, null);
+        request.executeWithListener(new LfmRequest.LfmRequestListener() {
+            @Override
+            public void onComplete(JSONObject response) {
+                Log.i(TAG, response.toString());
+                try {
+                    Assert.assertEquals("Should have accepted 16 scrobble", 16, response.getJSONObject("scrobbles").getJSONObject("@attr").getInt("accepted"));
                 } catch (Exception e) {
                     Log.e(TAG, e.getMessage());
                     e.printStackTrace();

@@ -34,7 +34,7 @@ public abstract class ApiBase {
     protected abstract String getMethodsGroup();
 
     protected LfmRequest prepareRequest(String methodName, LfmParameters methodParameters, boolean needAuth) {
-        return new LfmRequest(String.format(Locale.US,"%s.%s",getMethodsGroup(),methodName),methodParameters,needAuth);
+        return new LfmRequest(String.format(Locale.US, "%s.%s", getMethodsGroup(), methodName), methodParameters, needAuth);
     }
 
     protected LfmRequest prepareRequest(ScrobbleParameters methodParameters) {
@@ -51,4 +51,20 @@ public abstract class ApiBase {
         return params;
     }
 
+    @SafeVarargs
+    protected final ScrobbleParameters generateScrobbleParameters(SimpleEntry<String, Collection<String>>... scrobbleParameters) {
+        ScrobbleParameters params = new ScrobbleParameters();
+        for (SimpleEntry<String, Collection<String>> parameter : scrobbleParameters) {
+            if (parameter.getValue() == null) continue;
+            params.put(parameter.getKey(), parameter.getValue().toArray(new String[parameter.getValue().size()]));
+        }
+        return params;
+    }
+
+    protected final Object[] arrayOrNull(Collection arg) {
+        if (arg == null) {
+            return null;
+        }
+        return arg.toArray();
+    }
 }

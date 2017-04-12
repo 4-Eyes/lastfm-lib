@@ -19,8 +19,6 @@ package com.ag.lfm.api.methods;
 import com.ag.lfm.LfmParameters;
 import com.ag.lfm.LfmRequest;
 
-import java.util.UUID;
-
 @SuppressWarnings("unused")
 public class LfmApiChart extends ApiBase {
 
