@@ -1,4 +1,4 @@
-package com.ag.testapplication.fragments;
+package com.last.testapplication.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,16 +11,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ag.lfm.Lfm;
-import com.ag.lfm.LfmError;
-import com.ag.lfm.LfmParameters;
-import com.ag.lfm.LfmRequest;
-import com.ag.lfm.ScrobbleParameters;
-import com.ag.lfm.Session;
-import com.ag.lfm.api.LfmApi;
-import com.ag.lfm.api.methods.LfmApiTrack;
-import com.ag.testapplication.LoginActivity;
-import com.ag.testapplication.R;
+import com.last.fm.api.Lfm;
+import com.last.fm.api.LfmError;
+import com.last.fm.api.LfmParameters;
+import com.last.fm.api.LfmRequest;
+import com.last.fm.api.ScrobbleParameters;
+import com.last.fm.api.Session;
+import com.last.fm.api.LfmApi;
+import com.last.fm.api.methods.LfmApiTrack;
+import com.last.testapplication.LoginActivity;
+import com.last.testapplication.R;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;

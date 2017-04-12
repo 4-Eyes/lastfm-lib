@@ -13,13 +13,13 @@
 //        limitations under the License.
 
 
-package com.ag.lfm.api.methods;
+package com.last.fm.api.methods;
 
 
-import com.ag.lfm.LfmParameters;
-import com.ag.lfm.LfmRequest;
-import com.ag.lfm.ScrobbleParameters;
-import com.ag.lfm.util.LfmUtil;
+import com.last.fm.api.LfmParameters;
+import com.last.fm.api.LfmRequest;
+import com.last.fm.api.ScrobbleParameters;
+import com.last.fm.api.util.LfmUtil;
 
 import java.util.Collection;
 import java.util.Collections;

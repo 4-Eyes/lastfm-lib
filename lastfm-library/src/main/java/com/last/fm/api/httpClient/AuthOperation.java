@@ -12,14 +12,14 @@
 //        See the License for the specific language governing permissions and
 //        limitations under the License.
 
-package com.ag.lfm.api.httpClient;
+package com.last.fm.api.httpClient;
 
 import android.os.AsyncTask;
 
-import com.ag.lfm.Lfm;
-import com.ag.lfm.LfmError;
-import com.ag.lfm.LfmParameters;
-import com.ag.lfm.Session;
+import com.last.fm.api.Lfm;
+import com.last.fm.api.LfmError;
+import com.last.fm.api.LfmParameters;
+import com.last.fm.api.Session;
 
 import org.json.JSONException;
 import org.json.JSONObject;

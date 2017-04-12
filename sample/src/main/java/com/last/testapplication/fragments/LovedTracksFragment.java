@@ -1,4 +1,4 @@
-package com.ag.testapplication.fragments;
+package com.last.testapplication.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,14 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.ag.lfm.LfmError;
-import com.ag.lfm.LfmParameters;
-import com.ag.lfm.LfmRequest;
-import com.ag.lfm.Session;
-import com.ag.lfm.api.LfmApi;
-import com.ag.testapplication.LovedTrack;
-import com.ag.testapplication.LovedTracksAdapter;
-import com.ag.testapplication.R;
+import com.last.fm.api.LfmError;
+import com.last.fm.api.LfmParameters;
+import com.last.fm.api.LfmRequest;
+import com.last.fm.api.Session;
+import com.last.fm.api.LfmApi;
+import com.last.testapplication.LovedTrack;
+import com.last.testapplication.LovedTracksAdapter;
+import com.last.testapplication.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

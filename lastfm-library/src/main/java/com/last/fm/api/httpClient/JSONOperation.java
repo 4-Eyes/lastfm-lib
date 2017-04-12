@@ -13,15 +13,15 @@
 //        limitations under the License.
 
 
-package com.ag.lfm.api.httpClient;
+package com.last.fm.api.httpClient;
 
 import android.os.AsyncTask;
 
-import com.ag.lfm.LfmError;
-import com.ag.lfm.LfmParameters;
-import com.ag.lfm.LfmRequest;
-import com.ag.lfm.ScrobbleParameters;
-import com.ag.lfm.util.LfmUtil;
+import com.last.fm.api.LfmError;
+import com.last.fm.api.LfmParameters;
+import com.last.fm.api.LfmRequest;
+import com.last.fm.api.ScrobbleParameters;
+import com.last.fm.api.util.LfmUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;

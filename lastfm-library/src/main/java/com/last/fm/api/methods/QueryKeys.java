@@ -1,7 +1,7 @@
-package com.ag.lfm.api.methods;
+package com.last.fm.api.methods;
 
-import com.ag.lfm.util.ISO3166;
-import com.ag.lfm.util.ISO639;
+import com.last.fm.api.util.ISO3166;
+import com.last.fm.api.util.ISO639;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.ag.lfm.api.methods;
+package com.last.fm.api.methods;
 
 /**
  * Created by 4-Eyes on 12/04/2017.
