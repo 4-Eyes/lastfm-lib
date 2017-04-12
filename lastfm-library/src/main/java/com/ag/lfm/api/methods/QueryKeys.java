@@ -31,7 +31,15 @@ public enum QueryKeys {
     CHOSEN_BY_USER("chosenByUser", (chosenByUser) -> (Boolean) chosenByUser ? "1" : "0"),
     TRACK_NUMBER("trackNumber"),
     ALBUM_ARTIST("albumArtist"),
-    DURATION("duration");
+    DURATION("duration"),
+    START_TIMESTAMP("startTimestamp", (timestamp) -> String.valueOf(((Date) timestamp).getTime() / 1000)),
+    END_TIMESTAMP("endTimestamp", (timestamp) -> String.valueOf(((Date) timestamp).getTime() / 1000)),
+    RECENT_TRACKS("recenttracks", (recentTracks) -> (Boolean) recentTracks ? "1" : "0"),
+    TAGGING_TYPE("taggingtype", (taggingType) -> ((TaggingType) taggingType).getKey()),
+    FROM("from", (from) -> String.valueOf(((Date) from).getTime() / 1000)),
+    TO("to", (to) -> String.valueOf(((Date) to).getTime() / 1000)),
+    EXTENDED("extended", (extended) -> (Boolean) extended ? "1" : "0"),
+    PERIOD("period", (period) -> ((Period) period).getKey());
 
     private final String key;
     private final Function<Object, String> conversionFunction;
