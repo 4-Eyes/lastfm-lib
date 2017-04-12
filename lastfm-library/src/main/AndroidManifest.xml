@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ag.lfm">
+    package="com.last.fm">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
