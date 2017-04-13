@@ -10,7 +10,7 @@ ext {
     libraryName = 'LastFM Library'
     artifact = 'lastfm-library'
 
-    libraryDescription = 'A library for using the last.fm library on Android'
+    libraryDescription = 'A library for using the last.fm api on Android'
 
     siteUrl = 'https://github.com/4-Eyes/lastfm-lib'
     gitUrl = 'https://github.com/4-Eyes/lastfm-lib.git'
