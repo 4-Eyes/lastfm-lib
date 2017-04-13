@@ -34,8 +34,7 @@ public class LfmApiAlbum extends ApiBase {
      * <p>
      * Multiple tags can be added at the same time by providing a comma delimited set of tags.
      * For example "rock,indie rock,indie pop".
-     * <p>
-     * See the last.fm API <a href"http://www.last.fm/api/show/album.addTags">documentation</a> for further details
+     * </p>
      *
      * @param artist the name of the artist linked to the album (required field)
      * @param album  the album tags are being added to (required field)
@@ -55,8 +54,7 @@ public class LfmApiAlbum extends ApiBase {
      * Gets information about the album specified.
      * <p>
      * The artist and album must be specified in this query.
-     * <p>
-     * See the last.fm API <a href"http://www.last.fm/api/show/album.addTags">documentation</a> for further details
+     * </p>
      *
      * @param artist the name of the artist linked to the album (required field)
      * @param album the name of the album which you wish to get information about (required field)
@@ -70,8 +68,7 @@ public class LfmApiAlbum extends ApiBase {
      * Gets information about the album specified.
      * <p>
      * The artist and album must be specified in this query.
-     * <p>
-     * See the last.fm API <a href"http://www.last.fm/api/show/album.addTags">documentation</a> for further details
+     * </p>
      *
      * @param mbid the MusicBrainz ID for the album (required)
      * @return the request for getting album details.
@@ -84,8 +81,7 @@ public class LfmApiAlbum extends ApiBase {
      * Gets information about the album specified.
      * <p>
      * The artist and album must be specified in this query.
-     * <p>
-     * See the last.fm API <a href"http://www.last.fm/api/show/album.addTags">documentation</a> for further details
+     * </p>
      *
      * @param artist the name of the artist linked to the album (required field unless mbid provided)
      * @param album the name of the album which you wish to get information about (required field unless mbid provided)

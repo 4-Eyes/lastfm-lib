@@ -7,7 +7,7 @@ package com.last.fm.api.util;
 @SuppressWarnings("unused")
 public enum ISO3166 {
     AFGHANISTAN("Afghanistan", "AF"),
-    ÅLAND_ISLANDS("Åland Islands", "AX"),
+    ALAND_ISLANDS("Åland Islands", "AX"),
     ALBANIA("Albania", "AL"),
     ALGERIA("Algeria", "DZ"),
     AMERICAN_SAMOA("American Samoa", "AS"),
@@ -62,7 +62,7 @@ public enum ISO3166 {
     COTE_DIVOIRE("Cote D'Ivoire", "CI"),
     CROATIA("Croatia", "HR"),
     CUBA("Cuba", "CU"),
-    CURAÇAO("Curaçao", "CW"),
+    CURACAO("Curaçao", "CW"),
     CYPRUS("Cyprus", "CY"),
     CZECH_REPUBLIC("Czech Republic", "CZ"),
     DENMARK("Denmark", "DK"),
@@ -190,7 +190,7 @@ public enum ISO3166 {
     ROMANIA("Romania", "RO"),
     RUSSIAN_FEDERATION("Russian Federation", "RU"),
     RWANDA("Rwanda", "RW"),
-    SAINT_BARTHÉLEMY("Saint Barthélemy", "BL"),
+    SAINT_BARTHELEMY("Saint Barthélemy", "BL"),
     SAINT_HELENA("Saint Helena", "SH"),
     SAINT_KITTS_AND_NEVIS("Saint Kitts and Nevis", "KN"),
     SAINT_LUCIA("Saint Lucia", "LC"),
