@@ -3,7 +3,7 @@
 
 Gradle:
 ```groovy
-compile 'com.github.ag:lastfm-library:1.0.2
+compile 'com.github.4-Eyes.lastfm-library:lastfm-library:0.9.0'
 ```
 ## Usage
 1. Add the internet permission in your `AndroidManifest.xml`
